@@ -7,7 +7,7 @@ if [[ ! $TAG =~ ^v[0-9.]+$ ]]; then
     exit 1
 fi
 
-sed -i '' "s/ARG CALIBRE_RELEASE\=.*/ARG CALIBRE_RELEASE\=\"${TAG:1}\"/" Dockerfile
+sed -i "s/ARG CALIBRE_RELEASE\=.*/ARG CALIBRE_RELEASE\=\"${TAG:1}\"/" Dockerfile
 
 if git diff --exit-code Dockerfile; then
     echo "already on tag: ${TAG}"
