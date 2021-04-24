@@ -5,7 +5,7 @@
 ![Docker Pulls](https://img.shields.io/docker/pulls/wietsedv/calibre-server)
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/wietsedv/calibre-server/latest)
 
-Automatically updating Docker image for `calibre-server`. The image contains a minimal [Calibre](https://calibre-ebook.com/) installation and starts a Calibre server.
+Automatically updating Docker image for `calibre-server`. The image contains a minimal [Calibre](https://calibre-ebook.com/) installation and starts a Calibre server. The current version should correspond with the [latest Calibre release](https://github.com/kovidgoyal/calibre/releases).
 
 **Note:** This image is unofficial and not affiliated with Calibre.
 
