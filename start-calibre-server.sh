@@ -8,13 +8,10 @@ for h in $TRUSTED_HOSTS; do
 done
 echo "trusted ips: ${TRUSTED_IPS}"
 
-# Initialize library
-mkdir -p "${LIBRARY_PATH}"
-touch "${LIBRARY_PATH}/metadata.db"
-
+touch "/library/metadata.db"
 XDG_RUNTIME_DIR=/tmp/runtime-root /usr/bin/calibre-server \
     --disable-use-bonjour \
     --enable-local-write \
     --trusted-ips="${TRUSTED_IPS}" \
-    "${LIBRARY_PATH}" \
-    "$@"
+    "$@" \
+    "/library"
