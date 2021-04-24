@@ -1,4 +1,5 @@
 # Docker Calibre Server
+![Docker Image Version (latest semver)](https://img.shields.io/docker/v/wietsedv/calibre-server)
 ![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/wietsedv/calibre-server)
 ![Docker Cloud Automated build](https://img.shields.io/docker/cloud/automated/wietsedv/calibre-server)
 ![Docker Pulls](https://img.shields.io/docker/pulls/wietsedv/calibre-server)
@@ -7,8 +8,6 @@
 Automatically updating Docker image for `calibre-server`. The image contains a minimal [Calibre](https://calibre-ebook.com/) installation and starts a Calibre server.
 
 **Note:** This image is unofficial and not affiliated with Calibre.
-
-The image on Docker Hub will automatically be rebuild on every new release of Calibre (may take up to 24 hours). If you're not sure whether this still holds (because last commit was 2 years ago or something like that), you can check whether the current `CALIBRE_RELEASE` argument in the [`Dockerfile`](https://hub.docker.com/r/wietsedv/calibre-server/dockerfile) on the Docker Hub still matches the [latest Calibre release](https://github.com/kovidgoyal/calibre/releases).
 
 ## Usage
 
