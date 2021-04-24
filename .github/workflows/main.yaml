@@ -3,6 +3,7 @@ name: Update to latest Calibre Release
 on:
   schedule:
     - cron: '30 5 * * *'
+  workflow_dispatch:
 
 jobs:
   date:
