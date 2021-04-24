@@ -1,4 +1,8 @@
 # Docker Calibre Server
+![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/wietsedv/calibre-server)
+![Docker Cloud Automated build](https://img.shields.io/docker/cloud/automated/wietsedv/calibre-server)
+![Docker Pulls](https://img.shields.io/docker/pulls/wietsedv/calibre-server)
+![Docker Image Size (tag)](https://img.shields.io/docker/image-size/wietsedv/calibre-server/latest)
 
 Automatically updating Docker image for `calibre-server`. The image contains a minimal [Calibre](https://calibre-ebook.com/) installation and starts a Calibre server.
 
