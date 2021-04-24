@@ -16,7 +16,7 @@ Calibre server is a REST API + web interface for Calibre. For more information a
 ### Use case 1: Standalone container for local use
 
 ```
-$ docker run wietsedv/calibre-server -p 8080:8080 -v /path/to/library:/library
+$ docker run -p 8080:8080 wietsedv/calibre-server -v /path/to/library:/library
 ```
 
 Now you have read+write access to your library via `localhost:8080`.
@@ -26,7 +26,7 @@ Now you have read+write access to your library via `localhost:8080`.
 The command of "Use case 1" gives r+w access to your library on the host machine, but other containers in the network have readonly access. Calibre does not allow giving global r+w access without whitelisting or authentication. To give write access to other containers you should use the Docker `host` network type (not recommended) or you can whitelist containers within the bridge network:
 
 ```
-$ docker run wietsedv/calibre-server -p 8080:8080 -v /path/to/library:/library -e TRUSTED_HOSTS="web1 web2"
+$ docker run -p 8080:8080 -v /path/to/library:/library -e TRUSTED_HOSTS="web1 web2" wietsedv/calibre-server
 ```
 
 **Note:** IP addresses of whitelisted containers (`web1` and `web2`) are resolved when `calibre-server` starts. So containers that need to access `calibre-server` have to start _before_ `calibre-server`.

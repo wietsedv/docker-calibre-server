@@ -1,11 +1,12 @@
 FROM --platform=linux/amd64 debian:buster-slim
 
 RUN apt-get update && apt-get install -y \
-    xz-utils \
-    libgl-dev \
-    libfontconfig \
+    dnsutils \
     iproute2 \
-    dnsutils
+    libfontconfig \
+    libgl1-mesa-dev \
+    xz-utils \
+    && rm -rf /var/lib/apt/lists/*
 
 ARG CALIBRE_RELEASE="5.16.1"
 ARG URL="https://download.calibre-ebook.com/${CALIBRE_RELEASE}/calibre-${CALIBRE_RELEASE}-x86_64.txz"
