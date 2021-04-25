@@ -1,10 +1,10 @@
-FROM --platform=linux/amd64 ubuntu:latest
+FROM --platform=linux/amd64 debian:buster-slim
 
 RUN apt-get update && apt-get install -y \
     dnsutils \
     iproute2 \
     libfontconfig \
-    libgl1-mesa-dev \
+    libgl1 \
     xz-utils \
     && rm -rf /var/lib/apt/lists/*
 
@@ -14,10 +14,11 @@ ADD https://download.calibre-ebook.com/${CALIBRE_RELEASE}/calibre-${CALIBRE_RELE
 RUN mkdir -p /opt/calibre && \
     tar xvf /tmp/calibre-tarball.txz -C /opt/calibre && \
     /opt/calibre/calibre_postinstall && \
-    rm -rf /tmp/* && \
-    mkdir /library && \
-    touch /library/metadata.db
+    rm -rf /tmp/*
 
+RUN rm /opt/calibre/lib/libQt5WebEngineCore.so*
+
+RUN mkdir /library && touch /library/metadata.db
 COPY start-calibre-server.sh .
 
 EXPOSE 8080
