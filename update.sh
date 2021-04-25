@@ -11,13 +11,13 @@ fi
 sed -i "s/ARG CALIBRE_RELEASE\=.*/ARG CALIBRE_RELEASE\=\"${TAG:1}\"/" Dockerfile
 
 if git diff --exit-code Dockerfile; then
-    echo "already on tag: ${TAG}"
-else
-    git add Dockerfile
-    git commit -m "update Calibre to ${TAG}"
-    git push origin main
+    echo "Dockerfile already on ${TAG}"
+    exit 0
 fi
 
+git add Dockerfile
+git commit -m "update Calibre to ${TAG}"
 git tag -f "${TAG}"
+
 git push -f --tags
-echo "updated tag: ${TAG}"
+git push origin main

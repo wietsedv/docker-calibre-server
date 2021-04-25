@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 debian:buster-slim
+FROM --platform=linux/amd64 ubuntu:latest
 
 RUN apt-get update && apt-get install -y \
     dnsutils \
@@ -9,8 +9,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 ARG CALIBRE_RELEASE="5.16.1"
-ARG URL="https://download.calibre-ebook.com/${CALIBRE_RELEASE}/calibre-${CALIBRE_RELEASE}-x86_64.txz"
-ADD $URL /tmp/calibre-tarball.txz
+ADD https://download.calibre-ebook.com/${CALIBRE_RELEASE}/calibre-${CALIBRE_RELEASE}-x86_64.txz /tmp/calibre-tarball.txz
 
 RUN mkdir -p /opt/calibre && \
     tar xvf /tmp/calibre-tarball.txz -C /opt/calibre && \
