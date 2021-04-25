@@ -16,8 +16,6 @@ RUN mkdir -p /opt/calibre && \
     /opt/calibre/calibre_postinstall && \
     rm -rf /tmp/*
 
-RUN rm /opt/calibre/lib/libQt5WebEngineCore.so*
-
 RUN mkdir /library && touch /library/metadata.db
 COPY start-calibre-server.sh .
 
