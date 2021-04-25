@@ -1,6 +1,7 @@
 FROM --platform=linux/amd64 debian:buster-slim
 
 RUN apt-get update && apt-get install -y \
+    curl \
     dnsutils \
     iproute2 \
     libfontconfig \
@@ -9,9 +10,9 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 ARG CALIBRE_RELEASE="5.16.1"
-ADD https://download.calibre-ebook.com/${CALIBRE_RELEASE}/calibre-${CALIBRE_RELEASE}-x86_64.txz /tmp/calibre-tarball.txz
 
-RUN mkdir -p /opt/calibre && \
+RUN curl -o /tmp/calibre-tarball.txz -L "https://download.calibre-ebook.com/${CALIBRE_RELEASE}/calibre-${CALIBRE_RELEASE}-x86_64.txz" && \
+    mkdir -p /opt/calibre && \
     tar xvf /tmp/calibre-tarball.txz -C /opt/calibre && \
     /opt/calibre/calibre_postinstall && \
     rm -rf /tmp/*
