@@ -2,7 +2,7 @@ FROM --platform=linux/amd64 alpine:latest
 
 RUN apk --no-cache add curl xz
 
-ARG CALIBRE_RELEASE="5.33.0"
+ARG CALIBRE_RELEASE="5.33.2"
 
 RUN curl -o /tmp/calibre-tarball.txz -L "https://download.calibre-ebook.com/${CALIBRE_RELEASE}/calibre-${CALIBRE_RELEASE}-x86_64.txz" && \
     mkdir -p /opt/calibre && \
