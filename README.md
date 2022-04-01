@@ -13,45 +13,25 @@ Automatically updating Docker image for `calibre-server`. The image contains a m
 
 Calibre server is a REST API + web interface for Calibre. For more information about usage of `calibre-server` itself, refer to the [user guide](https://manual.calibre-ebook.com/server.html) and the [CLI manual](https://manual.calibre-ebook.com/generated/en/calibre-server.html) of Calibre.
 
-### Use case 1: Standalone container for local use
+The default login credentials are `admin` / `admin`. They are stored in `/config/users.sqlite` and can be changed [via the cli](https://manual.calibre-ebook.com/server.html#managing-user-accounts-from-the-command-line-only).
+
+### Docker CLI
 
 ```
-$ docker run -ti -p 8080:8080 wietsedv/calibre-server -v /path/to/library:/library
+$ docker run -it -p 8080:8080 -v /path/to/config:/config -v /path/to/library:/library wietsedv/calibre-server
 ```
 
-Now you have read+write access to your library via `localhost:8080`.
-
-### Use case 2: Access from other containers within network
-
-The command of "Use case 1" gives r+w access to your library on the host machine, but other containers in the network have readonly access. Calibre does not allow giving global r+w access without whitelisting or authentication. To give write access to other containers you should use the Docker `host` network type (not recommended) or you can whitelist containers within the bridge network:
-
-```
-$ docker run -ti -p 8080:8080 -v /path/to/library:/library -e TRUSTED_HOSTS="web1 web2" wietsedv/calibre-server
-```
-
-**Note:** IP addresses of whitelisted containers (`web1` and `web2`) are resolved when `calibre-server` starts. So containers that need to access `calibre-server` have to start _before_ `calibre-server`.
-
-### Use case 3: Docker compose (recommended)
-
-You can get the same setup as "Use case 2" with this `docker-compose.yaml`:
+### Docker Compose
 
 ```yaml
 services:
-    calibre:
-        image: wietsedv/calibre-server
-        volumes:
-            - /path/to/library:/library
-        ports: 
-            - "8080:8080"
-        depends_on:  # start web1 and web2 before calibre
-            - web1
-            - web2
-        environment:
-            TRUSTED_HOSTS: web1 web2  # whitelist web1 and web2
-    
-    web1:
-        image: nginx:alpine
-
-    web2:
-        image: nginx:alpine
+  calibre:
+    image: wietsedv/calibre-server:arch
+    container_name: calibre-server
+    volumes:
+      - /path/to/config:/config
+      - /path/to/library:/library
+    ports: 
+      - 8080:8080
+    restart: unless-stopped
 ```
