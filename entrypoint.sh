@@ -9,4 +9,5 @@ XDG_RUNTIME_DIR=/tmp/runtime-root calibre-server \
     --disable-use-bonjour \
     --enable-local-write \
     --userdb=/config/users.sqlite \
+    --enable-auth \
     "/library"
