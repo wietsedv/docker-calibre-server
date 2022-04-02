@@ -14,7 +14,7 @@ RUN \
 
 EXPOSE 8080
 
-VOLUME [ "/config", "/library" ]
+VOLUME [ "/config", "/books" ]
 
 COPY entrypoint.sh .
 CMD [ "/entrypoint.sh" ]

@@ -18,7 +18,7 @@ The default login credentials are `admin` / `admin`. They are stored in `/config
 ### Docker CLI
 
 ```
-$ docker run -it -p 8080:8080 -v /path/to/config:/config -v /path/to/library:/library wietsedv/calibre-server
+$ docker run -it -p 8080:8080 -v /path/to/config:/config -v /path/to/books:/books wietsedv/calibre-server
 ```
 
 ### Docker Compose
@@ -30,7 +30,7 @@ services:
     container_name: calibre-server
     volumes:
       - /path/to/config:/config
-      - /path/to/library:/library
+      - /path/to/books:/books
     ports: 
       - 8080:8080
     restart: unless-stopped
