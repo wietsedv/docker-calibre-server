@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 alpine:latest
+FROM --platform=linux/amd64 ubuntu:latest
 
 RUN apk --no-cache add curl xz
 
